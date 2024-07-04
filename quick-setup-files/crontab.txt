@@ -1,0 +1,5 @@
+To setup a cron scheduler
+
+1) enter this: crontab e
+2) enter this line
+* * * * * /usr/bin/python3 /home/xyz/Nitro/jira-backend/watcher.py

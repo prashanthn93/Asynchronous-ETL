@@ -1,0 +1,3 @@
+import dbCode
+
+dbCode.main()

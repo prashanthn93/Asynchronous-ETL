@@ -1,0 +1,58 @@
+How to deploy without disrupting the process once ssh disconnects:
+1) type screen and enter
+2) start the process
+3) Ctrl - A then Ctrl - D to detach screen
+4) if needed resume screen through command screen -r
+
+How to stop process running at a port:
+find pid -> sudo lsof -t -i:<port-number>
+abourt by pid -> kill -9 pid
+
+or shortcut: sudo kill -9 `sudo lsof -t -i:3010`
+
+How to deploy the front end:
+
+Port for frontend is: 3000
+Location of the frontend is: /home/jirauser/Client/ComAl/jira-reports-frontend
+command: npm start
+or
+1) npm run build
+2) navigate to react folder
+3)  pm2 serve <path> <port> --spa OR
+eg: pm2 serve /home/jirauser/Client/ComAl/jira-reports-frontend/build 3000 --name jira-reports-frontend
+
+OR
+ 
+sudo pm2 serve build 3000 --name jira-reports-frontend
+
+ pm2 serve build 3000 --spa --name jira-reports-frontend
+
+How to deploy middleware:
+
+Port: 3010
+Location:Client/ComAl/jira-middleware
+
+1) stop the running process if running
+2) deploy through nodemon app.js 
+3) 
+
+OR
+1) navigate to the middleware folder 
+2) pm2 start app.js --name jira-middleware
+
+
+How to deploy backend
+check if backend is running on crobjob with
+crontab -e
+
+
+
+How to setup the Database:
+
+1) Make a DB user with:
+
+CREATE USER 'comal_jira'@'%' IDENTIFIED BY 'password';
+
+2) Afte making the database, make a db user with:
+
+GRANT ALL PRIVILEGES ON `jira_comal`.* TO 'comal_jira'@'%';
